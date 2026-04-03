@@ -2,5 +2,5 @@ services:
   - type: web
     name: vitaclin
     runtime: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
     startCommand: gunicorn vitaclin.wsgi:application
