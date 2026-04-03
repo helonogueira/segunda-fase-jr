@@ -4,12 +4,18 @@ from django.contrib.auth import views as auth_views
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from django.db import connection
 
 def criar_usuario(request):
-    if not User.objects.filter(username='vitaclin').exists():
+    try:
+        connection.ensure_connection()
+    except:
+        pass
+    try:
         User.objects.create_superuser('vitaclin', '', 'vitaclin2026')
-        return HttpResponse('Usuário criado com sucesso!')
-    return HttpResponse('Usuário já existe!')
+        return HttpResponse('Usuário criado!')
+    except Exception as e:
+        return HttpResponse(f'Erro: {e}')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
