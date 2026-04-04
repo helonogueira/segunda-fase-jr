@@ -1,12 +1,23 @@
 {% extends "pacientes/base.html" %}
 
 {% block conteudo %}
-<h1>Remover Paciente</h1>
-<p>Tem certeza que deseja remover <strong>{{ paciente.nome }}</strong>?</p>
+<div class="cabecalho">
+    <h1>Remover Paciente</h1>
+</div>
 
-<form method="POST">
-    {% csrf_token %}
-    <button type="submit" class="btn-danger">Confirmar Remoção</button>
-    <a href="{% url 'lista_pacientes' %}">Cancelar</a>
-</form>
+<div class="form-container">
+    <p style="color: #4a5568; margin-bottom: 8px;">Você está prestes a remover o seguinte paciente:</p>
+    <p style="font-size: 1.1rem; font-weight: 700; color: #1a202c; margin-bottom: 4px;">{{ paciente.nome }}</p>
+    <p style="color: #718096; font-size: 0.9rem; margin-bottom: 24px;">{{ paciente.especialidade }}</p>
+
+    <p style="color: #e53e3e; font-size: 0.9rem; margin-bottom: 24px;">⚠️ Esta ação não pode ser desfeita.</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-acoes">
+            <button type="submit" class="btn-danger">Confirmar Remoção</button>
+            <a href="{% url 'lista_pacientes' %}" class="btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
 {% endblock %}

@@ -1,26 +1,47 @@
 {% extends "pacientes/base.html" %}
 
 {% block conteudo %}
-<h1>{{ acao }} Paciente</h1>
+<div class="cabecalho">
+    <h1>{{ acao }} Paciente</h1>
+</div>
 
-<form method="POST">
-    {% csrf_token %}
-    <label>Nome</label>
-    <input type="text" name="nome" value="{{ paciente.nome }}" required>
+<div class="form-container">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-grupo">
+            <label>Nome completo</label>
+            <input type="text" name="nome" value="{{ paciente.nome }}" required placeholder="Ex: Maria Silva">
+        </div>
 
-    <label>Data de Nascimento</label>
-    <input type="date" name="data_nascimento" value="{{ paciente.data_nascimento }}" required>
+        <div class="form-grupo">
+            <label>Data de Nascimento</label>
+            <input type="date" name="data_nascimento" value="{{ paciente.data_nascimento }}" required>
+        </div>
 
-    <label>Contato</label>
-    <input type="text" name="contato" value="{{ paciente.contato }}" required>
+        <div class="form-grupo">
+            <label>Contato</label>
+            <input type="text" name="contato" value="{{ paciente.contato }}" required placeholder="Ex: (11) 99999-9999">
+        </div>
 
-    <label>Especialidade</label>
-    <input type="text" name="especialidade" value="{{ paciente.especialidade }}" required>
+        <div class="form-grupo">
+            <label>Especialidade</label>
+            <select name="especialidade" required>
+                <option value="">Selecione uma especialidade</option>
+                <option value="Fisioterapia" {% if paciente.especialidade == 'Fisioterapia' %}selected{% endif %}>🦴 Fisioterapia</option>
+                <option value="Nutrição" {% if paciente.especialidade == 'Nutrição' %}selected{% endif %}>🥗 Nutrição</option>
+                <option value="Psicologia" {% if paciente.especialidade == 'Psicologia' %}selected{% endif %}>🧠 Psicologia</option>
+            </select>
+        </div>
 
-    <label>Observações</label>
-    <textarea name="observacoes">{{ paciente.observacoes }}</textarea>
+        <div class="form-grupo">
+            <label>Observações</label>
+            <textarea name="observacoes" placeholder="Informações relevantes sobre o paciente...">{{ paciente.observacoes }}</textarea>
+        </div>
 
-    <button type="submit" class="btn-primary">{{ acao }}</button>
-    <a href="{% url 'lista_pacientes' %}">Cancelar</a>
-</form>
+        <div class="form-acoes">
+            <button type="submit" class="btn-primary">{{ acao }}</button>
+            <a href="{% url 'lista_pacientes' %}" class="btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
 {% endblock %}

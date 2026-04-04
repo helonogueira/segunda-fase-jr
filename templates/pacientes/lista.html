@@ -2,37 +2,43 @@
 
 {% block conteudo %}
 <div class="cabecalho">
-    <h1>Pacientes</h1>
+    <div>
+        <h1>Pacientes</h1>
+        <p class="subtitulo">{{ pacientes|length }} paciente(s) cadastrado(s)</p>
+    </div>
     <a href="{% url 'cadastrar_paciente' %}" class="btn-primary">+ Novo Paciente</a>
 </div>
 
+<div class="filtros">
+    <a href="{% url 'lista_pacientes' %}" class="filtro-btn {% if not especialidade_filtro %}ativo{% endif %}">Todos</a>
+    <a href="?especialidade=Fisioterapia" class="filtro-btn {% if especialidade_filtro == 'Fisioterapia' %}ativo{% endif %}">🦴 Fisioterapia</a>
+    <a href="?especialidade=Nutrição" class="filtro-btn {% if especialidade_filtro == 'Nutrição' %}ativo{% endif %}">🥗 Nutrição</a>
+    <a href="?especialidade=Psicologia" class="filtro-btn {% if especialidade_filtro == 'Psicologia' %}ativo{% endif %}">🧠 Psicologia</a>
+</div>
+
 {% if pacientes %}
-<table>
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Data de Nascimento</th>
-            <th>Contato</th>
-            <th>Especialidade</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for paciente in pacientes %}
-        <tr>
-            <td>{{ paciente.nome }}</td>
-            <td>{{ paciente.data_nascimento }}</td>
-            <td>{{ paciente.contato }}</td>
-            <td>{{ paciente.especialidade }}</td>
-            <td>
-            <a href="{% url 'editar_paciente' paciente.id %}">Editar</a>
-            <a href="{% url 'remover_paciente' paciente.id %}">Remover</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="cards-grid">
+    {% for paciente in pacientes %}
+    {% with esp=paciente.especialidade|lower %}
+    <div class="card-paciente {{ esp }}">
+        <a href="{% url 'detalhe_paciente' paciente.id %}" class="card-nome">{{ paciente.nome }}</a>
+        <span class="card-especialidade {{ esp }}">{{ paciente.especialidade }}</span>
+        <div class="card-info">📅 {{ paciente.data_formatada }}</div>        <div class="card-info">📞 {{ paciente.contato }}</div>
+        {% if paciente.observacoes %}
+        <div class="card-info">📝 {{ paciente.observacoes }}</div>
+        {% endif %}
+        <div class="card-acoes">
+            <a href="{% url 'editar_paciente' paciente.id %}" class="btn-editar">✏️ Editar</a>
+            <a href="{% url 'remover_paciente' paciente.id %}" class="btn-remover">🗑️ Remover</a>
+        </div>
+    </div>
+    {% endwith %}
+    {% endfor %}
+</div>
 {% else %}
-<p>Nenhum paciente cadastrado ainda.</p>
+<div class="vazio">
+    <p>Nenhum paciente cadastrado ainda.</p>
+    <a href="{% url 'cadastrar_paciente' %}" class="btn-primary">+ Cadastrar primeiro paciente</a>
+</div>
 {% endif %}
 {% endblock %}

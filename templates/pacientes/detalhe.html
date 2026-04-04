@@ -1,0 +1,40 @@
+{% extends "pacientes/base.html" %}
+
+{% block conteudo %}
+<div class="cabecalho">
+    <h1>Ficha do Paciente</h1>
+    <a href="{% url 'lista_pacientes' %}" class="btn-secondary">← Voltar</a>
+</div>
+
+<div class="form-container" style="max-width: 600px;">
+    {% with esp=paciente.especialidade|lower %}
+    <div style="border-left: 4px solid #2b7a78; padding-left: 16px; margin-bottom: 24px;" class="borda-{{ esp }}">
+        <h2 style="font-size: 1.4rem; color: #1a202c;">{{ paciente.nome }}</h2>
+        <span class="card-especialidade {{ esp }}">{{ paciente.especialidade }}</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px;">
+        <div>
+            <p style="font-size: 0.8rem; color: #718096; font-weight: 600; margin-bottom: 4px;">DATA DE NASCIMENTO</p>
+            <p style="font-size: 1rem; color: #1a202c;">📅 {{ paciente.data_formatada }}</p>
+        </div>
+        <div>
+            <p style="font-size: 0.8rem; color: #718096; font-weight: 600; margin-bottom: 4px;">CONTATO</p>
+            <p style="font-size: 1rem; color: #1a202c;">📞 {{ paciente.contato }}</p>
+        </div>
+    </div>
+
+    {% if paciente.observacoes %}
+    <div style="background: #f8fafc; padding: 16px; border-radius: 8px; margin-bottom: 24px;">
+        <p style="font-size: 0.8rem; color: #718096; font-weight: 600; margin-bottom: 8px;">OBSERVAÇÕES</p>
+        <p style="color: #2d3748;">{{ paciente.observacoes }}</p>
+    </div>
+    {% endif %}
+
+    <div class="form-acoes">
+        <a href="{% url 'editar_paciente' paciente.id %}" class="btn-primary">✏️ Editar</a>
+        <a href="{% url 'remover_paciente' paciente.id %}" class="btn-danger">🗑️ Remover</a>
+    </div>
+    {% endwith %}
+</div>
+{% endblock %}

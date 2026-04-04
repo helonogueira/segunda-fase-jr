@@ -6,10 +6,24 @@ from .db import pacientes_collection
 
 @login_required
 def lista_pacientes(request):
-    pacientes = list(pacientes_collection.find())
+    especialidade_filtro = request.GET.get('especialidade', '')
+    if especialidade_filtro:
+        pacientes = list(pacientes_collection.find({'especialidade': especialidade_filtro}))
+    else:
+        pacientes = list(pacientes_collection.find())
     for paciente in pacientes:
         paciente['id'] = str(paciente['_id'])
-    return render(request, 'pacientes/lista.html', {'pacientes': pacientes})
+        if paciente.get('data_nascimento'):
+            try:
+                from datetime import datetime
+                data = datetime.strptime(paciente['data_nascimento'], '%Y-%m-%d')
+                paciente['data_formatada'] = data.strftime('%d/%m/%Y')
+            except:
+                paciente['data_formatada'] = paciente['data_nascimento']
+    return render(request, 'pacientes/lista.html', {
+        'pacientes': pacientes,
+        'especialidade_filtro': especialidade_filtro
+    })
 
 @login_required
 def cadastrar_paciente(request):
@@ -52,3 +66,16 @@ def remover_paciente(request, id):
         messages.success(request, 'Paciente removido com sucesso!')
         return redirect('lista_pacientes')
     return render(request, 'pacientes/confirmar_remocao.html', {'paciente': paciente})
+
+@login_required
+def detalhe_paciente(request, id):
+    paciente = pacientes_collection.find_one({'_id': ObjectId(id)})
+    paciente['id'] = str(paciente['_id'])
+    if paciente.get('data_nascimento'):
+        try:
+            from datetime import datetime
+            data = datetime.strptime(paciente['data_nascimento'], '%Y-%m-%d')
+            paciente['data_formatada'] = data.strftime('%d/%m/%Y')
+        except:
+            paciente['data_formatada'] = paciente['data_nascimento']
+    return render(request, 'pacientes/detalhe.html', {'paciente': paciente})

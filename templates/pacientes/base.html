@@ -9,10 +9,17 @@
 </head>
 <body>
     <nav>
-        <span>🏥 VitaClin</span>
+        <span class="nav-logo">🏥 VitaClin</span>
         <a href="{% url 'lista_pacientes' %}">Pacientes</a>
-        <a href="/logout/">Sair</a>
+        <form method="POST" action="/logout/" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn-sair-form">Sair</button>
+        </form>
     </nav>
+
+    <div class="faixa-boas-vindas">
+        🏥 VitaClin · Fisioterapia · Nutrição · Psicologia
+    </div>
 
     <main>
         {% if messages %}
