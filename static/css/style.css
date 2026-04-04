@@ -347,11 +347,25 @@ textarea { resize: vertical; min-height: 80px; }
 
 /* RESPONSIVO: funicona abrindo no celular */
 @media (max-width: 600px) {
-    nav { padding: 12px 16px; }
+    nav { 
+        padding: 12px 16px; 
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .nav-logo { 
+        font-size: 1.1rem;
+        order: 1;
+    }
+    nav a { 
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+    .nav-qrcode-texto { display: none; }
     main { padding: 0 16px; margin: 20px auto; }
     .cards-grid { grid-template-columns: 1fr; }
     .cabecalho { flex-direction: column; align-items: flex-start; gap: 12px; }
     .login-box { padding: 32px 24px; margin: 16px; }
+    .faixa-boas-vindas { font-size: 0.75rem; }
 }
 
 .form-container {

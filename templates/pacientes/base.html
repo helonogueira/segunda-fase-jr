@@ -9,7 +9,7 @@
 </head>
 <body>
     <nav>
-        <a href="{% url 'qrcode_acesso' %}">📱 QR Code</a>
+        <a href="{% url 'qrcode_acesso' %}">📱 <span class="nav-qrcode-texto">QR Code</span></a>
         <span class="nav-logo">🏥 VitaClin</span>
         <a href="{% url 'lista_pacientes' %}">Pacientes</a>
         <form method="POST" action="/logout/" style="display:inline;">
