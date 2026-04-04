@@ -354,11 +354,16 @@ textarea { resize: vertical; min-height: 80px; }
     }
     .nav-logo { 
         font-size: 1.1rem;
-        order: 1;
+        order: 0;
+        flex: 1;
     }
-    nav a { 
+    nav a:not(.btn-sair-form) { 
         font-size: 0.8rem;
         padding: 6px 10px;
+        order: 1;
+    }
+    .btn-sair-form {
+        order: 2;
     }
     .nav-qrcode-texto { display: none; }
     main { padding: 0 16px; margin: 20px auto; }
