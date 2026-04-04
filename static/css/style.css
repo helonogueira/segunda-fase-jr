@@ -345,7 +345,7 @@ textarea { resize: vertical; min-height: 80px; }
     border: 1px solid #fed7d7;
 }
 
-/* RESPONSIVO */
+/* RESPONSIVO: funicona abrindo no celular */
 @media (max-width: 600px) {
     nav { padding: 12px 16px; }
     main { padding: 0 16px; margin: 20px auto; }

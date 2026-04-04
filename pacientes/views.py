@@ -3,6 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from bson import ObjectId
 from .db import pacientes_collection
+import qrcode
+import io
+import base64
 
 @login_required
 def lista_pacientes(request):
@@ -79,3 +82,15 @@ def detalhe_paciente(request, id):
         except:
             paciente['data_formatada'] = paciente['data_nascimento']
     return render(request, 'pacientes/detalhe.html', {'paciente': paciente})
+
+@login_required
+def qrcode_acesso(request):
+    url = 'https://vitaclin.onrender.com'
+    qr = qrcode.QRCode(version=1, box_size=10, border=4)
+    qr.add_data(url)
+    qr.make(fit=True)
+    img = qr.make_image(fill_color='#2b7a78', back_color='white')
+    buffer = io.BytesIO()
+    img.save(buffer, format='PNG')
+    img_str = base64.b64encode(buffer.getvalue()).decode()
+    return render(request, 'pacientes/qrcode.html', {'qr_img': img_str, 'url': url})
