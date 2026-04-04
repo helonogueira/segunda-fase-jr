@@ -1,10 +1,10 @@
 {% extends "pacientes/base.html" %}
 
 {% block conteudo %}
-<div class="cabecalho">
-    <h1>Ficha do Paciente</h1>
+<div style="margin-bottom: 24px;">
     <a href="{% url 'lista_pacientes' %}" class="btn-secondary">← Voltar</a>
 </div>
+<h1 style="text-align: center; margin-top: 20px;">Ficha do Paciente</h1>
 
 <div class="form-container" style="max-width: 600px;">
     {% with esp=paciente.especialidade|lower %}
