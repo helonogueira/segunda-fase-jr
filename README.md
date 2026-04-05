@@ -11,7 +11,9 @@ Sistema web desenvolvido como solução para o case da segunda fase do processo 
 **Credenciais de acesso:**
 - Usuário: `vitaclin`
 - Senha: `vitaclin2026`
-
+- 
+**Link do vídeo de demosntração da plataforma:** https://youtu.be/gMHpPbbwi1s?si=Q3wOyWDo0TGNllNh
+  
 ## Acesso pelo Celular
 
 Escaneie o QR Code abaixo para acessar o VitaClin diretamente pelo celular:
