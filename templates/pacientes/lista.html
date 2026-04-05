@@ -9,11 +9,32 @@
     <a href="{% url 'cadastrar_paciente' %}" class="btn-primary">+ Novo Paciente</a>
 </div>
 
+<form method="GET" style="margin-bottom: 20px;">
+    {% if especialidade_filtro %}
+        <input type="hidden" name="especialidade" value="{{ especialidade_filtro }}">
+    {% endif %}
+    <div style="display: flex; gap: 10px;">
+        <input 
+            type="text" 
+            name="busca" 
+            value="{{ busca }}" 
+            placeholder="Buscar por nome ou contato..."
+            style="flex: 1;"
+        >
+        <button type="submit" class="btn-primary">
+            <i class="fa-solid fa-magnifying-glass"></i> Buscar
+        </button>
+        {% if busca %}
+        <a href="{% url 'lista_pacientes' %}" class="btn-secondary">Limpar</a>
+        {% endif %}
+    </div>
+</form>
+
 <div class="filtros">
     <a href="{% url 'lista_pacientes' %}" class="filtro-btn {% if not especialidade_filtro %}ativo{% endif %}">Todos</a>
-    <a href="?especialidade=Fisioterapia" class="filtro-btn {% if especialidade_filtro == 'Fisioterapia' %}ativo{% endif %}">🦴 Fisioterapia</a>
-    <a href="?especialidade=Nutrição" class="filtro-btn {% if especialidade_filtro == 'Nutrição' %}ativo{% endif %}">🥗 Nutrição</a>
-    <a href="?especialidade=Psicologia" class="filtro-btn {% if especialidade_filtro == 'Psicologia' %}ativo{% endif %}">🧠 Psicologia</a>
+    <a href="?especialidade=Fisioterapia" class="filtro-btn {% if especialidade_filtro == 'Fisioterapia' %}ativo{% endif %}">Fisioterapia</a>
+    <a href="?especialidade=Nutrição" class="filtro-btn {% if especialidade_filtro == 'Nutrição' %}ativo{% endif %}">Nutrição</a>
+    <a href="?especialidade=Psicologia" class="filtro-btn {% if especialidade_filtro == 'Psicologia' %}ativo{% endif %}">Psicologia</a>
 </div>
 
 {% if pacientes %}
@@ -23,13 +44,14 @@
     <div class="card-paciente {{ esp }}">
         <a href="{% url 'detalhe_paciente' paciente.id %}" class="card-nome">{{ paciente.nome }}</a>
         <span class="card-especialidade {{ esp }}">{{ paciente.especialidade }}</span>
-        <div class="card-info">📅 {{ paciente.data_formatada }}</div>        <div class="card-info">📞 {{ paciente.contato }}</div>
+        <div class="card-info"><i class="fa-regular fa-calendar"></i> {{ paciente.data_formatada }}</div>
+        <div class="card-info"><i class="fa-solid fa-phone"></i> {{ paciente.contato }}</div>
         {% if paciente.observacoes %}
-        <div class="card-info">📝 {{ paciente.observacoes }}</div>
+        <div class="card-info"><i class="fa-regular fa-note-sticky"></i> {{ paciente.observacoes }}</div>
         {% endif %}
         <div class="card-acoes">
-            <a href="{% url 'editar_paciente' paciente.id %}" class="btn-editar">✏️ Editar</a>
-            <a href="{% url 'remover_paciente' paciente.id %}" class="btn-remover">🗑️ Remover</a>
+            <a href="{% url 'editar_paciente' paciente.id %}" class="btn-editar"><i class="fa-solid fa-pen"></i> Editar</a>
+            <a href="{% url 'remover_paciente' paciente.id %}" class="btn-remover"><i class="fa-solid fa-trash"></i> Remover</a>
         </div>
     </div>
     {% endwith %}

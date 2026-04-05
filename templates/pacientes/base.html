@@ -6,11 +6,11 @@
     <title>VitaClin</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
     <nav>
-        <a href="{% url 'qrcode_acesso' %}">📱 <span class="nav-qrcode-texto">QR Code</span></a>
-        <span class="nav-logo">🏥 VitaClin</span>
+        <a href="{% url 'qrcode_acesso' %}"><i class="fa-solid fa-qrcode"></i> QR Code</a>        <span class="nav-logo">VitaClin</span>
         <a href="{% url 'lista_pacientes' %}">Pacientes</a>
         <form method="POST" action="/logout/" style="display:inline;">
             {% csrf_token %}
@@ -19,7 +19,7 @@
     </nav>
 
     <div class="faixa-boas-vindas">
-        🏥 VitaClin · Fisioterapia · Nutrição · Psicologia
+        Fisioterapia · Nutrição · Psicologia
     </div>
 
     <main>

@@ -10,10 +10,22 @@ import base64
 @login_required
 def lista_pacientes(request):
     especialidade_filtro = request.GET.get('especialidade', '')
+    busca = request.GET.get('busca', '')
+    
+    query = {}
+    
     if especialidade_filtro:
-        pacientes = list(pacientes_collection.find({'especialidade': especialidade_filtro}))
-    else:
-        pacientes = list(pacientes_collection.find())
+        query['especialidade'] = especialidade_filtro
+    
+    if busca:
+        query['$or'] = [
+            {'nome': {'$regex': busca, '$options': 'i'}},
+            {'contato': {'$regex': busca, '$options': 'i'}},
+            {'especialidade': {'$regex': busca, '$options': 'i'}},
+            {'observacoes': {'$regex': busca, '$options': 'i'}},
+        ]
+    
+    pacientes = list(pacientes_collection.find(query))
     for paciente in pacientes:
         paciente['id'] = str(paciente['_id'])
         if paciente.get('data_nascimento'):
@@ -23,9 +35,11 @@ def lista_pacientes(request):
                 paciente['data_formatada'] = data.strftime('%d/%m/%Y')
             except:
                 paciente['data_formatada'] = paciente['data_nascimento']
+    
     return render(request, 'pacientes/lista.html', {
         'pacientes': pacientes,
-        'especialidade_filtro': especialidade_filtro
+        'especialidade_filtro': especialidade_filtro,
+        'busca': busca,
     })
 
 @login_required
