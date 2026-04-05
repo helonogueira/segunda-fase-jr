@@ -35,7 +35,7 @@ A VitaClin é uma clínica que oferece atendimentos em **Fisioterapia**, **Nutri
 - Visualização da ficha completa do paciente
 - Edição de dados existentes
 - Remoção de pacientes com confirmação
-- Pesquisa de pacientes por nome ou número
+- Pesquisa de pacientes por nome, número ou CPF
 - QR Code para acesso pelo celular
 - Interface responsiva (funciona em desktop e mobile)
 
@@ -56,6 +56,7 @@ A VitaClin é uma clínica que oferece atendimentos em **Fisioterapia**, **Nutri
 ## Conexão com a Disciplina TecWeb (Insper 2026/1)
 
 Este projeto aplica diretamente os conhecimentos adquiridos na disciplina de Tecnologias Web:
+https://barbaratieko.github.io/tecweb/
 
 - **Django** (Aula 04) — estrutura completa com views, templates e formulários
 - **CRUD** (Projeto 1B) — o mesmo padrão de criar, listar, editar e remover aplicado a pacientes
