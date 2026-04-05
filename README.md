@@ -1,6 +1,6 @@
 # segunda-fase-jr
 
-# 🏥 VitaClin — Sistema de Gestão de Pacientes
+# VitaClin — Sistema de Gestão de Pacientes
 
 Sistema web desenvolvido como solução para o case da segunda fase do processo seletivo da InsperJr.
 
@@ -12,7 +12,7 @@ Sistema web desenvolvido como solução para o case da segunda fase do processo 
 - Usuário: `vitaclin`
 - Senha: `vitaclin2026`
 
-## 📱 Acesso pelo Celular
+## Acesso pelo Celular
 
 Escaneie o QR Code abaixo para acessar o VitaClin diretamente pelo celular:
 
