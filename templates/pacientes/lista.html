@@ -13,20 +13,25 @@
     {% if especialidade_filtro %}
         <input type="hidden" name="especialidade" value="{{ especialidade_filtro }}">
     {% endif %}
-    <div style="display: flex; gap: 10px;">
-        <input 
-            type="text" 
-            name="busca" 
-            value="{{ busca }}" 
-            placeholder="Buscar por nome ou contato..."
-            style="flex: 1;"
-        >
-        <button type="submit" class="btn-primary">
-            <i class="fa-solid fa-magnifying-glass"></i> Buscar
-        </button>
-        {% if busca %}
-        <a href="{% url 'lista_pacientes' %}" class="btn-secondary">Limpar</a>
-        {% endif %}
+    <div style="margin-bottom: 20px;">
+        <div style="display: flex; gap: 10px;">
+            <input 
+                type="text" 
+                name="busca" 
+                value="{{ busca }}"
+                placeholder="Buscar paciente..."
+                style="flex: 1;"
+            >
+            <button type="submit" class="btn-primary">
+                <i class="fa-solid fa-magnifying-glass"></i> Buscar
+            </button>
+            {% if busca %}
+            <a href="{% url 'lista_pacientes' %}" class="btn-secondary">Limpar</a>
+            {% endif %}
+        </div>
+        <p style="font-size: 0.78rem; color: #a0aec0; margin-top: 6px;">
+            <i class="fa-solid fa-circle-info"></i> Busque por nome, contato, CPF, especialidade ou observações
+        </p>
     </div>
 </form>
 

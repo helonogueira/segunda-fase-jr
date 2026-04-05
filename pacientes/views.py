@@ -23,9 +23,10 @@ def lista_pacientes(request):
             {'contato': {'$regex': busca, '$options': 'i'}},
             {'especialidade': {'$regex': busca, '$options': 'i'}},
             {'observacoes': {'$regex': busca, '$options': 'i'}},
+            {'cpf': {'$regex': busca, '$options': 'i'}},
         ]
     
-    pacientes = list(pacientes_collection.find(query))
+    pacientes = list(pacientes_collection.find(query).sort('nome', 1))
     for paciente in pacientes:
         paciente['id'] = str(paciente['_id'])
         if paciente.get('data_nascimento'):
@@ -48,6 +49,7 @@ def cadastrar_paciente(request):
         paciente = {
             'nome': request.POST['nome'],
             'data_nascimento': request.POST['data_nascimento'],
+            'cpf': request.POST.get('cpf', ''),
             'contato': request.POST['contato'],
             'especialidade': request.POST['especialidade'],
             'observacoes': request.POST.get('observacoes', ''),
@@ -66,6 +68,7 @@ def editar_paciente(request, id):
             {'$set': {
                 'nome': request.POST['nome'],
                 'data_nascimento': request.POST['data_nascimento'],
+                'cpf': request.POST.get('cpf', ''),
                 'contato': request.POST['contato'],
                 'especialidade': request.POST['especialidade'],
                 'observacoes': request.POST.get('observacoes', ''),

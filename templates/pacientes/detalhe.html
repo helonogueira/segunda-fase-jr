@@ -13,14 +13,18 @@
         <span class="card-especialidade {{ esp }}">{{ paciente.especialidade }}</span>
     </div>
 
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 24px;">
         <div>
             <p style="font-size: 0.8rem; color: #718096; font-weight: 600; margin-bottom: 4px;">DATA DE NASCIMENTO</p>
-            <p style="font-size: 1rem; color: #1a202c;"> {{ paciente.data_formatada }}</p>
+            <p style="font-size: 1rem; color: #1a202c;"><i class="fa-regular fa-calendar"></i> {{ paciente.data_formatada }}</p>
+        </div>
+        <div>
+            <p style="font-size: 0.8rem; color: #718096; font-weight: 600; margin-bottom: 4px;">CPF</p>
+            <p style="font-size: 1rem; color: #1a202c;"><i class="fa-regular fa-id-card"></i> {{ paciente.cpf }}</p>
         </div>
         <div>
             <p style="font-size: 0.8rem; color: #718096; font-weight: 600; margin-bottom: 4px;">CONTATO</p>
-            <p style="font-size: 1rem; color: #1a202c;"> {{ paciente.contato }}</p>
+            <p style="font-size: 1rem; color: #1a202c;"><i class="fa-solid fa-phone"></i> {{ paciente.contato }}</p>
         </div>
     </div>
 
