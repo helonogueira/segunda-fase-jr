@@ -12,7 +12,7 @@ Sistema web desenvolvido como solução para o case da segunda fase do processo 
 - Usuário: `vitaclin`
 - Senha: `vitaclin2026`
 - 
-**Link do vídeo de demosntração da plataforma:** https://youtu.be/gMHpPbbwi1s?si=Q3wOyWDo0TGNllNh
+**Link do vídeo de demonstração da plataforma:** https://youtu.be/gMHpPbbwi1s?si=Q3wOyWDo0TGNllNh
   
 ## Acesso pelo Celular
 
