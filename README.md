@@ -35,6 +35,7 @@ A VitaClin é uma clínica que oferece atendimentos em **Fisioterapia**, **Nutri
 - Visualização da ficha completa do paciente
 - Edição de dados existentes
 - Remoção de pacientes com confirmação
+- Pesquisa de pacientes por nome ou número
 - QR Code para acesso pelo celular
 - Interface responsiva (funciona em desktop e mobile)
 
